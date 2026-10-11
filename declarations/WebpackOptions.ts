@@ -2317,6 +2317,17 @@ export type ImportMetaParserOptions = ImportMetaParserOptionsKnown &
 	ImportMetaParserOptionsUnknown;
 
 /**
+ * Options for reusing intermediate results between watch compilations.
+ * @since 5.113.0
+ */
+export interface IncrementalOptions {
+	/**
+	 * Reuse the module graph between watch compilations. Defaults to true.
+	 */
+	buildModuleGraph?: boolean;
+}
+
+/**
  * Options for infrastructure level logging.
  */
 export interface InfrastructureLogging {
@@ -6128,7 +6139,7 @@ export type WebassemblyModuleFilename = RelativePath;
 
 /**
  * Normalized webpack options object.
- * @required cache, snapshot, entry, experiments, externals, externalsPresets, infrastructureLogging, module, node, optimization, output, plugins, resolve, resolveLoader, stats, watchOptions
+ * @required cache, snapshot, entry, experiments, externals, externalsPresets, incremental, infrastructureLogging, module, node, optimization, output, plugins, resolve, resolveLoader, stats, watchOptions
  */
 export interface WebpackOptionsNormalized {
 	/**
@@ -6187,6 +6198,10 @@ export interface WebpackOptionsNormalized {
 	 * Ignore specific warnings.
 	 */
 	ignoreWarnings?: IgnoreWarningsNormalized;
+	/**
+	 * Reuse unaffected module graph state between watch compilations of the same compiler. Enabled by default, independently of `cache`.
+	 */
+	incremental: IncrementalOptions;
 	/**
 	 * Options for infrastructure level logging.
 	 */
@@ -6371,6 +6386,11 @@ export interface WebpackOptions {
 	 * Ignore specific warnings.
 	 */
 	ignoreWarnings?: IgnoreWarnings;
+	/**
+	 * Reuse unaffected module graph state between watch compilations of the same compiler. Enabled by default, independently of `cache`.
+	 * @since 5.113.0
+	 */
+	incremental?: boolean | IncrementalOptions;
 	/**
 	 * Options for infrastructure level logging.
 	 */
