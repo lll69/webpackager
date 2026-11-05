@@ -4357,7 +4357,10 @@ describe("SourceProcessor — printing in pieces", () => {
 		// `/>` only closes the tag in foreign content; in HTML it is ignored, and
 		// whether the end tag is needed hangs on what ends up inside.
 		expect(minify("<div/>x</div>")).toBe("<div>x</div>");
-		expect(minify("<div/></div>")).toBe("<div>");
+		// An HTML element's `/>` leaves it open, so its end tag is what closes it.
+		expect(minify("<div/></div>")).toBe("<div></div>");
+		expect(minify("<div/></div><p>x")).toBe("<div></div><p>x");
+		expect(minify("<span/></span><i>x</i>")).toBe("<span></span><i>x</i>");
 		expect(minify("<svg><path/><circle/></svg>")).toBe(
 			"<svg><path/><circle/></svg>"
 		);

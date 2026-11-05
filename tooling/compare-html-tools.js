@@ -1570,15 +1570,6 @@ const EXPECTED = [
 		why: UNIT_INPUT_STYLES
 	},
 	{
-		relation: "idempotence",
-		contains: "-> </div>",
-		source: [
-			"source-processor-printing-in-pieces-keeps-the-end-tag-of-a-element-that-has-2",
-			"source-processor-printing-in-pieces-keeps-the-end-tag-of-a-element-that-has-2, cut in an end tag's name"
-		],
-		why: UNIT_INPUT_TAGS
-	},
-	{
 		relation: "agreement",
 		contains:
 			'/html[1]/body[1]/p[1]: parse5 <html:p data-x="a\\nb">, tool <html:p data-x="a\\rb">',
