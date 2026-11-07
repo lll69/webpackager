@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - dev-1
+      - webpackager-v5.94.0
   pull_request:
     branches:
       - main
